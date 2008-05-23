@@ -18,7 +18,7 @@ BuildRequires:	php-pear-PEAR
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 Requires:	nmap
 Requires:	php-pear
-Requires:	php-pear-PEAR-core >= 1.4.0
+Requires:	php-pear-PEAR-core >= 1:1.4.0
 Requires:	php-pear-XML_Parser
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
