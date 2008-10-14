@@ -1,18 +1,17 @@
 %include	/usr/lib/rpm/macros.php
 %define		_class		Net
 %define		_subclass	Nmap
-%define		_status		beta
+%define		_status		stable
 %define		_pearname	Net_Nmap
 Summary:	%{_pearname} - A simple wrapper class for the Nmap utility
 Summary(pl.UTF-8):	%{_pearname} - prosty wrapper dla programu nmap
 Name:		php-pear-%{_pearname}
-Version:	0.9.9
-Release:	2
+Version:	1.0.0
+Release:	1
 License:	LGPL
 Group:		Development/Languages/PHP
 Source0:	http://pear.php.net/get/%{_pearname}-%{version}.tgz
-# Source0-md5:	b63479cb5993542e5af6e8814a5754c7
-Patch0:		%{name}-path_fix.patch
+# Source0-md5:	4773850a9d92924fb38e6eb51e83df65
 URL:		http://pear.php.net/package/Net_Nmap/
 BuildRequires:	php-pear-PEAR
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
@@ -57,7 +56,6 @@ Testy dla PEAR::%{_pearname}.
 
 %prep
 %pear_package_setup
-%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
