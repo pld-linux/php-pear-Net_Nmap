@@ -1,24 +1,22 @@
 %include	/usr/lib/rpm/macros.php
-%define		_class		Net
-%define		_subclass	Nmap
-%define		_status		beta
+%define		_status		stable
 %define		_pearname	Net_Nmap
 Summary:	%{_pearname} - A simple wrapper class for the Nmap utility
 Summary(pl.UTF-8):	%{_pearname} - prosty wrapper dla programu nmap
 Name:		php-pear-%{_pearname}
-Version:	0.9.9
-Release:	1
+Version:	1.0.3
+Release:	2
 License:	LGPL
 Group:		Development/Languages/PHP
 Source0:	http://pear.php.net/get/%{_pearname}-%{version}.tgz
-# Source0-md5:	b63479cb5993542e5af6e8814a5754c7
-Patch0:		%{name}-path_fix.patch
+# Source0-md5:	50f41a7f123f61462996d34a23f5c1a9
 URL:		http://pear.php.net/package/Net_Nmap/
-BuildRequires:	php-pear-PEAR
+BuildRequires:	php-pear-PEAR >= 1:1.5.4
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
+BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	nmap
 Requires:	php-pear
-Requires:	php-pear-PEAR >= 1.4.0
+Requires:	php-pear-PEAR-core >= 1:1.5.4
 Requires:	php-pear-XML_Parser
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -45,9 +43,9 @@ Ta klasa ma w PEAR status: %{_status}.
 Summary:	Tests for PEAR::%{_pearname}
 Summary(pl.UTF-8):	Testy dla PEAR::%{_pearname}
 Group:		Development/Languages/PHP
-AutoReq:	no
 Requires:	%{name} = %{version}-%{release}
 AutoProv:	no
+AutoReq:	no
 
 %description tests
 Tests for PEAR::%{_pearname}.
@@ -57,7 +55,6 @@ Testy dla PEAR::%{_pearname}.
 
 %prep
 %pear_package_setup
-%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
