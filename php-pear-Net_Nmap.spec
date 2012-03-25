@@ -1,19 +1,19 @@
+%define		status		stable
+%define		pearname	Net_Nmap
 %include	/usr/lib/rpm/macros.php
-%define		_status		stable
-%define		_pearname	Net_Nmap
-Summary:	%{_pearname} - A simple wrapper class for the Nmap utility
-Summary(pl.UTF-8):	%{_pearname} - prosty wrapper dla programu nmap
-Name:		php-pear-%{_pearname}
-Version:	1.0.3
-Release:	3
+Summary:	%{pearname} - A simple wrapper class for the Nmap utility
+Summary(pl.UTF-8):	%{pearname} - prosty wrapper dla programu nmap
+Name:		php-pear-%{pearname}
+Version:	1.0.4
+Release:	1
 License:	LGPL
 Group:		Development/Languages/PHP
-Source0:	http://pear.php.net/get/%{_pearname}-%{version}.tgz
-# Source0-md5:	50f41a7f123f61462996d34a23f5c1a9
+Source0:	http://pear.php.net/get/%{pearname}-%{version}.tgz
+# Source0-md5:	7236414702f449a76a29d951dc7befee
 URL:		http://pear.php.net/package/Net_Nmap/
 BuildRequires:	php-pear-PEAR >= 1:1.5.4
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
-BuildRequires:	rpmbuild(macros) >= 1.300
+BuildRequires:	rpmbuild(macros) >= 1.580
 Requires:	nmap
 Requires:	php-pear
 Requires:	php-pear-PEAR-core >= 1:1.5.4
@@ -29,7 +29,7 @@ utility for network exploration or security auditing.
 Net_Nmap can be used to auto discovery hosts and services in your
 network or simply to parse Nmap XML output.
 
-In PEAR status of this package is: %{_status}.
+In PEAR status of this package is: %{status}.
 
 %description -l pl.UTF-8
 Net_Nmap to prosty interfejs do programu nmap, nardzędzia do analizy
@@ -38,15 +38,26 @@ ruchu i audytu bezpieczeństwa.
 Net_Nmap może być użyty do wykrycia maszyn i usług w sieci lub do
 analizy raportu XML z nmapa.
 
-Ta klasa ma w PEAR status: %{_status}.
+Ta klasa ma w PEAR status: %{status}.
 
 %prep
 %pear_package_setup
+
+mv ./usr/share/pear/data/Net_Nmap/examples .
+# bug
+mv ./%{php_pear_dir}/Net/Net/Nmap/Stats.php ./%{php_pear_dir}/Net/Nmap/Stats.php
+mv ./usr/share/pear/data/Net_Nmap/docs/* docs
+rmdir ./usr/share/pear/data/Net_Nmap/docs
+mv ./usr/share/pear/data/Net_Nmap/* .
+rmdir ./usr/share/pear/data/Net_Nmap
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{php_pear_dir}
 %pear_package_install
+
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -54,7 +65,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc install.log
+%doc docs/README
 %{php_pear_dir}/.registry/*.reg
 %{php_pear_dir}/Net/Nmap
 %{php_pear_dir}/Net/Nmap.php
-%{php_pear_dir}/data/Net_Nmap
+%{_examplesdir}/%{name}-%{version}
