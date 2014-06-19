@@ -4,12 +4,12 @@
 Summary:	%{pearname} - A simple wrapper class for the Nmap utility
 Summary(pl.UTF-8):	%{pearname} - prosty wrapper dla programu nmap
 Name:		php-pear-%{pearname}
-Version:	1.0.4
+Version:	1.0.5
 Release:	1
 License:	LGPL
 Group:		Development/Languages/PHP
 Source0:	http://pear.php.net/get/%{pearname}-%{version}.tgz
-# Source0-md5:	7236414702f449a76a29d951dc7befee
+# Source0-md5:	ee29cb2a0899d44dd427a2b6e8ba6ae6
 URL:		http://pear.php.net/package/Net_Nmap/
 BuildRequires:	php-pear-PEAR >= 1:1.5.4
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
@@ -43,13 +43,13 @@ Ta klasa ma w PEAR status: %{status}.
 %prep
 %pear_package_setup
 
-mv ./usr/share/pear/data/Net_Nmap/examples .
-# bug
-mv ./%{php_pear_dir}/Net/Net/Nmap/Stats.php ./%{php_pear_dir}/Net/Nmap/Stats.php
-mv ./usr/share/pear/data/Net_Nmap/docs/* docs
-rmdir ./usr/share/pear/data/Net_Nmap/docs
-mv ./usr/share/pear/data/Net_Nmap/* .
-rmdir ./usr/share/pear/data/Net_Nmap
+mv .%{php_pear_dir}/data/Net_Nmap/examples .
+mv docs/Net_Nmap/examples/* examples
+mv .%{php_pear_dir}/data/Net_Nmap/docs/* docs
+rmdir .%{php_pear_dir}/data/Net_Nmap/docs
+mv .%{php_pear_dir}/data/Net_Nmap/* .
+rmdir .%{php_pear_dir}/data/Net_Nmap
+mv docs/* .
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -64,8 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc install.log
-%doc docs/README
+%doc README LICENSE install.log
 %{php_pear_dir}/.registry/*.reg
 %{php_pear_dir}/Net/Nmap
 %{php_pear_dir}/Net/Nmap.php
