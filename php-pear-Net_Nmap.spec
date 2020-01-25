@@ -1,6 +1,5 @@
 %define		status		stable
 %define		pearname	Net_Nmap
-%include	/usr/lib/rpm/macros.php
 Summary:	%{pearname} - A simple wrapper class for the Nmap utility
 Summary(pl.UTF-8):	%{pearname} - prosty wrapper dla programu nmap
 Name:		php-pear-%{pearname}
