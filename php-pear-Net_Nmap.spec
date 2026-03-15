@@ -4,7 +4,7 @@ Summary:	%{pearname} - A simple wrapper class for the Nmap utility
 Summary(pl.UTF-8):	%{pearname} - prosty wrapper dla programu nmap
 Name:		php-pear-%{pearname}
 Version:	1.0.5
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Development/Languages/PHP
 Source0:	http://pear.php.net/get/%{pearname}-%{version}.tgz
